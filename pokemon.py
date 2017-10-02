@@ -8,10 +8,13 @@ class Pokemon(Object):
 	special attack	[int]
 	special defense	[int]
 	speed			[int]
+	moves 			[list]
+	item			[str]
+	ability			[str]
 
 	"""
 
-	def __init__(self, stats, moves, item = None):
+	def __init__(self, stats, moves, ability, item = None):
 		"""Initializer: Creates a pokemon
         
         Parameter stats: A pokemon's current stats
@@ -19,6 +22,9 @@ class Pokemon(Object):
         
         Parameter d: A pokemon's current 4 moves
         Precondition: moves is of type list with len() <= 4
+
+        Parameter ability: A pokemon's ability
+        Precondition: ability is of type str
 
         Parameter item: A pokemon's current held item
         Precondition: item is of type string
@@ -31,6 +37,8 @@ class Pokemon(Object):
 		self.spe = stats[5]
 
 		self.moves = moves
+
+		self.ability = ability 
 
 		self.item = item
 
