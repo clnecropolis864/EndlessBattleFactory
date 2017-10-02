@@ -10,7 +10,7 @@ class Move(Object):
 	effect: any secondary effects	[str]
 	"""
 
-	def __init__(self, pp, type, id, name, cth = 1, effect):
+	def __init__(self, pp, type, id, name, effect = "none"):
 		"""Initializer: Creates a Move
         
         Parameter pp: The pp of a move
@@ -25,10 +25,6 @@ class Move(Object):
         Parameter name: The current pokemon on the trainer
         Precondition: name is of type str
 
-        Parameter cth: The chance to hit (default = 1)
-        Precondition: cth is of type float
-        Precondition: (cth > 0) & (cth <= 1)
-
         Parameter effect: Secondary effects of the move
         Precondition: effect is of type str
         """
@@ -37,7 +33,6 @@ class Move(Object):
 		self.type = type
 		self.id = id
 		self.name = name
-		self.cth = cth
 		self.effect = effect
 
 	def __str__():
@@ -53,26 +48,35 @@ class AtkMove(Move):
 	contact: if move makes contact [bool] 
 	"""
 
-	def __init__(self, pp, type, id, name, cth = 1, effect, power, contact):
+	def __init__(self, pp, type, id, name, effect = "none", cth = 1, power, contact):
 		"""Initializer: Creates a Move
 
 		All instance attributes are inherited from
 		Move. Only the additional instance attributes
 		are listed below.
+
+		Parameter cth: The chance to hit (default = 1)
+		Precondition: cth is of type float
+		Precondition: (cth > 0) & (cth <= 1)
         
         Parameter power: The base power of a move
         Precondition: power is of type int
         
         Parameter type: if the move makes contact
         Precondition: contact is of type bool
+        """
 
-		Move.__init__(pp, type, id, name, cth, effect)
-		"""
+		Move.__init__(pp, type, id, name, effect)
+		self.cth = cth
+		self.power = power
+		self.contact = contact
+
+		
 
 class SpMove(Move):
-	"""Instance is a Move that attacks"""
+	"""Instance is a Move that doesn't attack"""
 
-	def __init__(self, pp, type, id, name, cth = 1, effect):
+	def __init__(self, pp, type, id, name, cth = 1, effect = "none"):
 		Move.__init__(pp, type, id, name, cth, effect)
 
 

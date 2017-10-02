@@ -11,7 +11,7 @@ class Pokemon(Object):
 
 	"""
 
-	def __init__(self, stats, moves, item):
+	def __init__(self, stats, moves, item = None):
 		"""Initializer: Creates a pokemon
         
         Parameter stats: A pokemon's current stats
