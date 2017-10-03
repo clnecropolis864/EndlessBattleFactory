@@ -2,17 +2,25 @@ import battle
 import pokedex as dex
 from trainer import Trainer
 from pokemon import Pokemon
+import copy
 
-name = input("What's your name?")
+name = raw_input("What's your name?")
+print name
 
 print "Pick 3 Pokemon:"
-Charizard = Pokemon(dex.Charizard[0], dex.Charizard[1], dex.CharizardItem[2])
-Venusaur = Pokemon(dex.Venusaur[0], dex.Venusaur[1], dex.VenusaurItem[2])
-Blastoise = Pokemon(dex.Blastoise[0], dex.Blastoise[1], dex.BlastoiseItem[2])
+Charizard = dex.charizard()
+Venusaur = dex.venusaur()
+Blastoise = dex.blastoise()
 
-party = [dex.Charizard(), dex.Venusaur(), dex.Blastoise()]
+party = [dex.charizard(), dex.venusaur(), dex.blastoise()]
 
 you = Trainer(name, party)
 
+oppName = "John"
+oppParty = copy.copy(party)
+
+opp = Trainer(oppName, oppParty)
+
+battle.run(you, opp)
 
 

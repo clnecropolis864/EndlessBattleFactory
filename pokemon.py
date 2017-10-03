@@ -1,4 +1,4 @@
-class Pokemon(Object):
+class Pokemon(object):
 	"""Instance is a pokemon
 	    
 	INSTANCE ATTRIBUTES:

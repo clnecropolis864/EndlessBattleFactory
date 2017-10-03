@@ -10,7 +10,7 @@ def charizard():
 
 def blastoise():
 	blastoise = Pokemon([79, 83, 100, 85, 105, 78], [md.surf(),\
-	md.iceBeam, md.rapidSpin, md.Rest], "torrent", itd.leftovers())
+	md.iceBeam, md.rapidSpin, md.rest], "torrent", itd.leftovers())
 	return blastoise
 
 def venusaur():

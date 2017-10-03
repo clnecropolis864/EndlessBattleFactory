@@ -1,4 +1,4 @@
-class Trainer(Object):
+class Trainer(object):
 	"""Instance is a trainer (player)
 	    
 	INSTANCE ATTRIBUTES:
