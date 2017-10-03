@@ -10,7 +10,7 @@ Charizard = Pokemon(dex.Charizard[0], dex.Charizard[1], dex.CharizardItem[2])
 Venusaur = Pokemon(dex.Venusaur[0], dex.Venusaur[1], dex.VenusaurItem[2])
 Blastoise = Pokemon(dex.Blastoise[0], dex.Blastoise[1], dex.BlastoiseItem[2])
 
-party = [Charizard, Venusaur, Blastoise]
+party = [dex.Charizard(), dex.Venusaur(), dex.Blastoise()]
 
 you = Trainer(name, party)
 

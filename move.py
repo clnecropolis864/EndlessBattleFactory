@@ -2,11 +2,10 @@ class Move(Object):
 	"""Instance is move
 	    
 	INSTANCE ATTRIBUTES:
-	pp: pp of move 				[int]
-	type: type of move 			[str]
+	pp: pp of move 					[int]
+	type: type of move 				[str]
 	id: move's unique id			[int]
-	name: name of move 			[str]
-	cth: chance to hit				[int]
+	name: name of move 				[str]
 	effect: any secondary effects	[str]
 	"""
 
@@ -44,11 +43,13 @@ class AtkMove(Move):
 	"""Instance is a Move that attacks
 
 	ADDITIONAL INSTANCE ATTRIBUTES:
-	power: base power of move 		[int]
-	contact: if move makes contact [bool] 
+	cth: chance to hit					[float]
+	power: base power of move 			[int]
+	physical: if the move is physical 	[bool]
+	contact: if move makes contact 		[bool] 
 	"""
 
-	def __init__(self, pp, type, id, name, effect = "none", cth = 1, power, contact):
+	def __init__(self, pp, type, id, name, effect = "none", cth = 1, power, physical = True, contact):
 		"""Initializer: Creates a Move
 
 		All instance attributes are inherited from
@@ -61,6 +62,9 @@ class AtkMove(Move):
         
         Parameter power: The base power of a move
         Precondition: power is of type int
+
+        Parameter physical: if the move is physical
+        Precondition: physical is type bool
         
         Parameter type: if the move makes contact
         Precondition: contact is of type bool
@@ -69,6 +73,7 @@ class AtkMove(Move):
 		Move.__init__(pp, type, id, name, effect)
 		self.cth = cth
 		self.power = power
+		self.physical = physical
 		self.contact = contact
 
 		
