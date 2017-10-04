@@ -44,11 +44,11 @@ def pick(battlefield):
 
 		x = raw_input("")
 		if x.lower() == str(moves[0]).lower():
-			moves[0].use()
+			moves[0].select()
 		elif x.lower() == str(moves[1]).lower():
-			moves[1].use()
+			moves[1].select()
 		elif x.lower() == str(moves[2]).lower():
-			moves[2].use()
+			moves[2].select()
 		elif x.lower() == str(moves[3]).lower():
-			moves[3].use()
+			moves[3].select()
 

@@ -21,3 +21,17 @@ class Trainer(object):
 
 	def getParty(self, i):
 		return party[i]
+
+class AITrainer(Trainer):
+	"""Instance is the AI
+
+	ADDTL. INSTANCE ATTRIBUTES:
+
+	"""
+
+	def __init__(self, name, party):
+		"""Initializer: Creates an AI"""
+
+		Trainer.__init__(self, name, party)
+
+	

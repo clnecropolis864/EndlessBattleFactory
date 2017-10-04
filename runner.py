@@ -1,6 +1,6 @@
 import battle
 import pokedex as dex
-from trainer import Trainer
+from trainer import Trainer, AITrainer
 from pokemon import Pokemon
 import copy
 
@@ -19,7 +19,7 @@ you = Trainer(name, party)
 oppName = "John"
 oppParty = copy.copy(party)
 
-opp = Trainer(oppName, oppParty)
+opp = AITrainer(oppName, oppParty)
 
 battle.run(you, opp)
 
