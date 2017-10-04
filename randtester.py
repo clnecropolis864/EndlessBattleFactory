@@ -19,3 +19,10 @@ test2.setVal(2)
 print test.getVal()
 print test2.getVal()
 print test3.getVal()
+
+testList = []
+testList.append(test)
+
+test.setVal(2)
+print test.getVal()
+print testList[0].getVal()

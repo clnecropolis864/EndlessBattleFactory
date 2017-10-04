@@ -2,8 +2,8 @@ class Trainer(object):
 	"""Instance is a trainer (player)
 	    
 	INSTANCE ATTRIBUTES:
-	name	[str]
-	party	[list]
+	__name	[str]
+	__party	[list]
 
 	"""
 
@@ -16,5 +16,8 @@ class Trainer(object):
         Parameter party: The current pokemon on the trainer
         Precondition: party is of type list
         """
-		self.name = name
-		self.party = party
+		self.__name = name
+		self.__party = party
+
+	def getParty(self, i):
+		return party[i]

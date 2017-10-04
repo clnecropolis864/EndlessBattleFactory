@@ -2,15 +2,15 @@ class Pokemon(object):
 	"""Instance is a pokemon
 	    
 	INSTANCE ATTRIBUTES:
-	hp				[int]
-	attack			[int]
-	defense			[int]
-	special attack	[int]
-	special defense	[int]
-	speed			[int]
-	moves 			[list]
-	item			[str]
-	ability			[str]
+	__hp				[int]
+	__attack			[int]
+	__defense			[int]
+	__special attack	[int]
+	__special defense	[int]
+	__speed				[int]
+	__moves 			[list]
+	__item				[str]
+	__ability			[str]
 
 	"""
 
@@ -29,21 +29,24 @@ class Pokemon(object):
         Parameter item: A pokemon's current held item
         Precondition: item is of type string
         """
-		self.hp = stats[0]
-		self.atk = stats[1]
-		self.defense = stats[2]
-		self.spatk = stats[3]
-		self.spdefense = stats[4]
-		self.spe = stats[5]
+		self.__hp = stats[0]
+		self.__atk = stats[1]
+		self.__defense = stats[2]
+		self.__spatk = stats[3]
+		self.__spdefense = stats[4]
+		self.__spe = stats[5]
 
-		self.moves = moves
+		self.__moves = moves
 
-		self.ability = ability 
+		self.__ability = ability 
 
-		self.item = item
+		self.__item = item
 
 	def useMove(self, moveno):
-		self.moves[moveno].use()
+		self.__moves[moveno].use()
+
+	def getMoves(self):
+		return self.__moves
 
 
 	
