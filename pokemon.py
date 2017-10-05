@@ -48,6 +48,9 @@ class Pokemon(object):
 	def getMoves(self):
 		return self.__moves
 
+	def getSpe(self):
+		return self.__spe
+
 
 	
 	
