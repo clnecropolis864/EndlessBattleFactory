@@ -76,6 +76,9 @@ class AtkMove(Move):
 		self.contact = contact
 		self.effect = effect
 
+	def getType():
+		return "AtkMove"
+
 		
 
 class SpMove(Move):
@@ -105,6 +108,9 @@ class SpMove(Move):
 		Move.__init__(self, pp, type, id, name)
 		self.cth = cth
 		self.effect = effect
+
+	def getType(self):
+		return "SpMove"
 
 
 

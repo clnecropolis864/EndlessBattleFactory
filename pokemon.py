@@ -51,6 +51,9 @@ class Pokemon(object):
 	def getSpe(self):
 		return self.__spe
 
+	def hit(self, damage):
+		self.__hp -= damage
+
 
 	
 	
