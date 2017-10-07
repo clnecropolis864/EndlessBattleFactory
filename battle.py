@@ -24,10 +24,7 @@ class Battlefield(object):
 
 	def useMove(move, user, target):
 		if move.getType() == "AtkMove":
-			"""BREAK
-			----------------
-			"""
-			damage = calc.damageCalc() #ENDED HERE
+			damage = calc.damageCalc()
 
 
 
@@ -51,10 +48,10 @@ def run(you, opp):
 		selectedMove = pick(battlefield)
 		oppSelectedMove = opp.selectMove()
 
-		if (battlefield.currentlyOut().getSpe())\ > (battlefield.currentlyOut(0).getSpe()):
+		if (battlefield.currentlyOut().getSpe()) > (battlefield.currentlyOut(0).getSpe()):
 			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
 			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
-		elif (battlefield.currentlyOut().getSpe())\ < (battlefield.currentlyOut(0).getSpe()):
+		elif (battlefield.currentlyOut().getSpe()) < (battlefield.currentlyOut(0).getSpe()):
 			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
 			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
 		else:

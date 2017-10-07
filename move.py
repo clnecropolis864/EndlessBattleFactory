@@ -24,15 +24,15 @@ class Move(object):
         Precondition: name is of type str
         """
 
-		self.pp = pp
-		self.type = type
-		self.id = id
-		self.name = name
+		self.__pp = pp
+		self.__type = type
+		self.__id = id
+		self.__name = name
 
 	def __str__():
-		"""Returns: Name of move"""
+		"""Ret__urns: Name of move"""
 
-		return name
+		return self.__name
 
 class AtkMove(Move):
 	"""Instance is a Move that attacks
@@ -70,14 +70,17 @@ class AtkMove(Move):
         """
 
 		Move.__init__(self, pp, type, id, name)
-		self.power = power
-		self.cth = cth
-		self.physical = physical
-		self.contact = contact
-		self.effect = effect
+		self.__power = power
+		self.__cth = cth
+		self.__physical = physical
+		self.__contact = contact
+		self.__effect = effect
 
-	def getType():
+	def getType(self):
 		return "AtkMove"
+
+	def getPower(self):
+		return self.__power
 
 		
 
@@ -106,8 +109,8 @@ class SpMove(Move):
 		"""
 
 		Move.__init__(self, pp, type, id, name)
-		self.cth = cth
-		self.effect = effect
+		self.__cth = cth
+		self.__effect = effect
 
 	def getType(self):
 		return "SpMove"
