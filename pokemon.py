@@ -54,6 +54,9 @@ class Pokemon(object):
 	def hit(self, damage):
 		self.__hp -= damage
 
+	def effect(self, effect):
+		pass
+
 
 	
 	

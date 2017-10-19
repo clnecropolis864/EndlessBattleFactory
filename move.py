@@ -82,6 +82,9 @@ class AtkMove(Move):
 	def getPower(self):
 		return self.__power
 
+	def getAccuracy(self):
+		return self.__cth
+
 		
 
 class SpMove(Move):
@@ -114,6 +117,9 @@ class SpMove(Move):
 
 	def getType(self):
 		return "SpMove"
+
+	def effect(self, effect):
+		pass
 
 
 

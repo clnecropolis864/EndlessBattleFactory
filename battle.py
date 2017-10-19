@@ -24,7 +24,17 @@ class Battlefield(object):
 
 	def useMove(move, user, target):
 		if move.getType() == "AtkMove":
-			damage = calc.damageCalc()
+			damage = 0
+			if random.random() < move.getAccuracy():
+				damage = calc.damageCalc()
+			target.hit(damage)
+			target.effect(move.effect())
+			user.effect(move.effect())
+		else:
+			target.effect(move.effect())
+			user.effect(move.effect())
+
+
 
 
 
