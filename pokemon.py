@@ -12,6 +12,8 @@ class Pokemon(object):
 	__item				[str]
 	__ability			[str]
 
+	__isFaint			[bool]
+
 	"""
 
 	def __init__(self, stats, moves, ability, item = None):
@@ -42,6 +44,8 @@ class Pokemon(object):
 
 		self.__item = item
 
+		self.__isFaint = False
+
 	def useMove(self, moveno):
 		self.__moves[moveno].use()
 
@@ -54,8 +58,17 @@ class Pokemon(object):
 	def hit(self, damage):
 		self.__hp -= damage
 
+		if hp <= 0:
+			self.__isFaint = True
+			hp = 0
+
 	def effect(self, effect):
 		pass
+
+	#FAINTED METHODS
+
+	def isFaint():
+		return self.__isFaint
 
 
 	

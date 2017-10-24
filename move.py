@@ -8,7 +8,7 @@ class Move(object):
 	name: name of move 				[str]
 	"""
 
-	def __init__(self, pp, type, id, name):
+	def __init__(self, pp, Type, ID, name):
 		"""Initializer: Creates a Move
         
         Parameter pp: The pp of a move
@@ -25,8 +25,8 @@ class Move(object):
         """
 
 		self.__pp = pp
-		self.__type = type
-		self.__id = id
+		self.__Type = Type
+		self.__ID = ID
 		self.__name = name
 
 	def __str__():

@@ -34,6 +34,20 @@ class Battlefield(object):
 			target.effect(move.effect())
 			user.effect(move.effect())
 
+	def allFaint(val):
+		allFaint = True
+
+		if val == 0:
+			for x in oppPokemon:
+				if not x.isFaint():
+					allFaint = False
+			return allFaint
+
+		for x in oppPokemon:
+			if not x.isFaint():
+				allFaint = False
+		return allFaint
+
 
 
 
@@ -65,11 +79,19 @@ def run(you, opp):
 			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
 			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
 		else:
-			rand = #GENERATE RAND NUM FROM 0-1
+			rand = random.random()
+			if rand < 50:
+				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
+				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
+			else:
+				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
+				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
+
+		if battlefield.getParty()
 
 
 
-	pass
+	
 
 def pick(battlefield):
 	x = raw_input("FIGHT/PKMN")
