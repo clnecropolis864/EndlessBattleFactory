@@ -17,10 +17,16 @@ class Battlefield(object):
 		self.__hazard = hazard
 		self.__weather = weather
 
-	def currentlyOut(self, val):
+	def currentlyOut(self, val = 0):
+		"""Returns: Pokemon currently out
+
+		Parameter val: The value. 0 for you, 1 for opponent
+		Precondition: val is 0 or 1 and of type int
+		"""
+		
 		if val == 0:
-			return self.__oppPokemon
-		return self.__youPokemon
+			return self.__youPokemon
+		return self.__oppPokemon
 
 	def useMove(move, user, target):
 		if move.getType() == "AtkMove":
@@ -34,11 +40,29 @@ class Battlefield(object):
 			target.effect(move.effect())
 			user.effect(move.effect())
 
-	def allFaint(val):
+	def battleOver(self):
+		"""Returns: Whether the battle is over
+
+		Returns a boolean
+		"""
+
+		battleOver = True
+
+		if (not allFaint(0)) and (not allFaint()):
+			battleOver = False
+
+		return battleOver
+
+	def allFaint(self, val = 0):
+		"""Returns: Whether the battle is over
+
+		Parameter val: The value. 0 for you, 1 for opponent
+		Precondition: val is 0 or 1 and of type int
+		"""
 		allFaint = True
 
 		if val == 0:
-			for x in oppPokemon:
+			for x in youPokemon:
 				if not x.isFaint():
 					allFaint = False
 			return allFaint
@@ -54,38 +78,39 @@ class Battlefield(object):
 
 
 def run(you, opp):
-	while isRunning:
-		"""Returns: None
+	"""Returns: None
 
-		RUNS THE BATTLE. LINK TO HTML
-		AS MUCH AS POSSIBLE.
+	RUNS THE BATTLE. LINK TO HTML
+	AS MUCH AS POSSIBLE.
 
-		Parameter you: you, the trainer
-		Precondition: you is of type Trainer
+	Parameter you: you, the trainer
+	Precondition: you is of type Trainer
 
-		Parameter opp: the opponent
-		Precondition: opp is of type Trainer
-		"""
+	Parameter opp: the opponent
+	Precondition: opp is of type Trainer
+	"""
+
+	while not battleOver:
 
 		battlefield = Battlefield(you.getParty(0), opp.getParty(0))
 
 		selectedMove = pick(battlefield)
 		oppSelectedMove = opp.selectMove()
 
-		if (battlefield.currentlyOut().getSpe()) > (battlefield.currentlyOut(0).getSpe()):
-			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
-			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
-		elif (battlefield.currentlyOut().getSpe()) < (battlefield.currentlyOut(0).getSpe()):
-			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
-			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
+		if (battlefield.currentlyOut().getSpe()) > (battlefield.currentlyOut(1).getSpe()):
+			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
+			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
+		elif (battlefield.currentlyOut().getSpe()) < (battlefield.currentlyOut(1).getSpe()):
+			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
+			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
 		else:
 			rand = random.random()
 			if rand < 50:
-				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
-				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
+				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
+				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
 			else:
-				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(0), battlefield.currentlyOut())
-				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(0))
+				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
+				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
 
 		if battlefield.getParty()
 
@@ -94,6 +119,14 @@ def run(you, opp):
 	
 
 def pick(battlefield):
+	"""Returns: None
+
+	The process of picking to fight or to switch
+
+	Parameter battlefield: the battlefield
+	Precondition: battlefield is of type Battlefield
+	"""
+
 	x = raw_input("FIGHT/PKMN")
 	moves = []
 
