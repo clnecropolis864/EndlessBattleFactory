@@ -31,3 +31,17 @@ def damageCalc(level, move, atk, defense, modifier):
 
 	return int((((2.0 * level / 5 + 2) * power * atk / defense) / 50\
 	 + 2) * modifierTotal)
+
+def typeChart(attack, defense):
+	multiplier = 1.0
+
+	for x in defense:
+
+		if attack == "normal":
+			if x == "ghost":
+				multiplier *= 0
+			elif (x == "rock") or (x == "steel"):
+				multipler /= 2:
+
+		elif attack == "fire":
+			if x == "" #finish

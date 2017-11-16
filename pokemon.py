@@ -9,6 +9,7 @@ class Pokemon(object):
 	__special defense	[int]
 	__speed				[int]
 	__moves 			[list]
+	__type				[list]
 	__item				[str]
 	__ability			[str]
 
@@ -16,17 +17,21 @@ class Pokemon(object):
 
 	"""
 
-	def __init__(self, stats, moves, ability, item = None):
+	def __init__(self, stats, moves, ability, typing, item = None):
 		"""Initializer: Creates a pokemon
         
         Parameter stats: A pokemon's current stats
         Precondition: stats is of type list with len() = 6
         
-        Parameter d: A pokemon's current 4 moves
+        Parameter moves: A pokemon's current 4 moves
         Precondition: moves is of type list with len() <= 4
 
         Parameter ability: A pokemon's ability
         Precondition: ability is of type str
+
+        Parameter typing: A pokemon's typing
+        Precondition: typing is of type list of length between 1 and 2
+        Precondition: list items are of type str
 
         Parameter item: A pokemon's current held item
         Precondition: item is of type string
@@ -41,10 +46,12 @@ class Pokemon(object):
 		self.__moves = moves
 
 		self.__ability = ability 
+		self.__typing = typing
 
 		self.__item = item
 
 		self.__isFaint = False
+		self.__status = ""
 
 	def useMove(self, moveno):
 		self.__moves[moveno].use()
@@ -65,9 +72,18 @@ class Pokemon(object):
 	def effect(self, effect):
 		pass
 
+	def getTyping(self):
+		return self.__typing
+
+	def getStatus(self):
+		return self.__status
+		
+	def setStatus(self, status):
+		self.__status = status
+
 	#FAINTED METHODS
 
-	def isFaint():
+	def isFaint(self):
 		return self.__isFaint
 
 

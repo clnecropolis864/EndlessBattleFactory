@@ -23,7 +23,7 @@ class Battlefield(object):
 		Parameter val: The value. 0 for you, 1 for opponent
 		Precondition: val is 0 or 1 and of type int
 		"""
-		
+
 		if val == 0:
 			return self.__youPokemon
 		return self.__oppPokemon
@@ -31,8 +31,52 @@ class Battlefield(object):
 	def useMove(move, user, target):
 		if move.getType() == "AtkMove":
 			damage = 0
-			if random.random() < move.getAccuracy():
+
+			#modifier = [weather, crit, random, STAB, type, burn, other]
+			modifier = [1, 1, 1, 1, 1, 1, 1]
+
+			#DEFINES MODIFIER VALUES
+			#Weather
+			if self.__weather == "sunny":
+				if move.getType() == "fire":
+					modifier[0] = 1.5
+				elif move.getType() == "water":
+					modifier[0] = 0.5
+			elif self.__weather == "rainy":
+				if move.getType() == "fire":
+					modifier[0] = 0.5
+				elif move.getType() == "water":
+					modifier[0] = 1.5
+
+			#crit
+			crit = #filler, calculates crit chance
+			modifier[1] = crit
+
+			#random
+			randModifier = int(random.random() * 16 + 85)
+			randModifier /= 100.0
+			modifier[2]
+
+			#STAB
+			if move.getType() in user.getTyping():
+				modifier[3] = 1.5
+
+			#type
+			modifier[4] = calc.typeChart(move.getType(), target.getTyping())
+
+			#burn
+			if user.getStatus() == "burn":
+				modifier[5] = 0.5
+
+			#other
+
+
+
+			if random.random() < move.getAccuracy(): #If move hits
 				damage = calc.damageCalc()
+			else: #If misses
+				print "miss"
+
 			target.hit(damage)
 			target.effect(move.effect())
 			user.effect(move.effect())
@@ -72,8 +116,8 @@ class Battlefield(object):
 				allFaint = False
 		return allFaint
 
-
-
+	def getWeather():
+		return self.__weather
 
 
 
@@ -92,18 +136,19 @@ def run(you, opp):
 
 	while not battleOver:
 
-		battlefield = Battlefield(you.getParty(0), opp.getParty(0))
+		battlefield = Battlefield(you.getParty(0), opp.getParty(0)) #Defines battlefield
 
-		selectedMove = pick(battlefield)
-		oppSelectedMove = opp.selectMove()
+		selectedMove = pick(battlefield) #Move select
+		oppSelectedMove = opp.selectMove() #AI picks a move
 
+		#Checks speed, executes moves accordingly
 		if (battlefield.currentlyOut().getSpe()) > (battlefield.currentlyOut(1).getSpe()):
 			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
 			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
 		elif (battlefield.currentlyOut().getSpe()) < (battlefield.currentlyOut(1).getSpe()):
 			battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
 			battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
-		else:
+		else: #If speed is equal
 			rand = random.random()
 			if rand < 50:
 				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
@@ -111,8 +156,6 @@ def run(you, opp):
 			else:
 				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
 				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
-
-		if battlefield.getParty()
 
 
 
