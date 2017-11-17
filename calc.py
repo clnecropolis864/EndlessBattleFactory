@@ -32,7 +32,19 @@ def damageCalc(level, move, atk, defense, modifier):
 	return int((((2.0 * level / 5 + 2) * power * atk / defense) / 50\
 	 + 2) * modifierTotal)
 
+
+
 def typeChart(attack, defense):
+	"""Returns: Damage multiplier based on typing
+
+	Returns the "type" value in modifier
+
+	Param attack: The attacking move
+	Precondition: Attack os if type str
+
+	Param defense: The defensive type of the recipient pokemon
+	Precondition: defense is of type list, len 2, containing str objects
+	"""
 	multiplier = 1.0
 
 	for x in defense:
@@ -41,7 +53,112 @@ def typeChart(attack, defense):
 			if x == "ghost":
 				multiplier *= 0
 			elif (x == "rock") or (x == "steel"):
-				multipler /= 2:
+				multipler *= 0.5:
 
 		elif attack == "fire":
-			if x == "" #finish
+			if (x == "fire") or (x == "water") or ("x == rock") or (x == " dragon"):
+				multiplier *= 0.5
+			elif (x == "grass") or (x == "ice") or (x == "bug") or (x == "steel"):
+				multiplier *= 2
+
+		elif attack =="water":
+			if (x == "water") or (x == "grass") or (x == "dragon"):
+				multiplier *= 0.5
+			elif (x == "fire") or (x == "ground") or (x == "rock"):
+				multiplier *= 2
+
+		elif attack == "electric":
+			if (x == "ground"):
+				multiplier *= 0
+			elif (x == "electric") or (x == "grass") or (x == "dragon"):
+				multiplier *= 0.5
+			elif (x == "water") or (x == "flying"):
+				multiplier *= 2
+
+		elif attack == "grass":
+			if (x == "fire") or (x == "grass") or (x == "poison") or (x == "flying") or (x == "bug") or (x == "dragon"):
+				multiplier *= 0.5
+			elif (x == "water") or (x == "ground") or (x == "rock"):
+				multiplier *= 2
+
+		elif attack == "ice":
+			if (x == "fire") or (x == "water") or (x == "ice") or (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "grass") or (x == "ground") or (x == "flying") or (x == "dragon"):
+				multiplier *= 2
+
+		elif attack == "fighting":
+			if (x == "ghost"):
+				multiplier *= 0
+			elif (x == "poison") or (x == "flying") or (x == "psychic") or (x == "bug"):
+				multiplier *= 0.5
+			elif (x == "normal") or (x == "ice") or (x == "rock") or (x == "dark") or (x == "steel"):
+				multiplier *= 2
+
+		elif attack == "poison":
+			if (x == "steel"):
+				multiplier *= 0
+			elif (x == "poison") or (x == "ground") or (x == "rock") or (x == "ghost"):
+				multiplier *= 0.5
+			elif (x == "grass"):
+				multiplier *= 2
+
+		elif attack == "ground":
+			if (x == "flying"):
+				multiplier *= 0
+			elif (x == "grass") or (x == "bug"):
+				multiplier *= 0.5
+			elif (x == "fire") or (x == "electric") or (x == "poison") or (x == "rock") or (x == "steel"):
+				multiplier *= 2
+
+		elif attack == "flying":
+			if (x == "electric") or (x == "rock") or (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "grass") or (x == "fighting") or (x == "bug"):
+				multiplier *= 2
+
+		elif attack == "psychic":
+			if (x == "dark"):
+				multiplier *= 0
+			elif (x == "psychic") or (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "fighting") or (x == "poison"):
+				multiplier *= 2
+
+		elif attack == "bug":
+			if (x == "fire") or (x == "fighting") or (x == "poison") or (x == "flying") or (x == "ghost") or (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "grass") or (x == "psychic") or (x == "dark"):
+				multiplier *= 2
+
+		elif attack == "rock":
+			if (x == "fighting") or (x == "ground") or (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "fire") or (x == "ice") or (x == "flying") or (x == "bug"):
+				multiplier *= 2
+
+		elif attack == "ghost":
+			if (x == "normal"):
+				multiplier *= 0
+			elif (x == "dark"):
+				multiplier *= 0.5
+			elif (x == "psychic") or (x == "ghost"):
+				multiplier *= 2
+
+		elif attack == "dragon":
+			if (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "dragon"):
+				multiplier *= 2
+
+		elif attack == "dark":
+			if (x == "fighting") or (x == "dark"):
+				multiplier *= 0.5
+			elif (x == "psychic") or (x == "ghost"):
+				multiplier *= 2
+
+		elif attack == "steel":
+			if (x == "fire") or (x == "water") or (x == "electric") or (x == "steel"):
+				multiplier *= 0.5
+			elif (x == "ice") or (x == "rock"):
+				multiplier *= 2
