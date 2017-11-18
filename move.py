@@ -85,6 +85,9 @@ class AtkMove(Move):
 	def getAccuracy(self):
 		return self.__cth
 
+	def isPhysical(self):
+		return self.__physical
+
 		
 
 class SpMove(Move):

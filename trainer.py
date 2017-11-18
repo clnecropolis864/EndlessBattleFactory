@@ -21,6 +21,17 @@ class Trainer(object):
 
 	def getParty(self, i):
 		return party[i]
+	def displayParty(self):
+		string = "["
+		for x in party:
+			string += x + " "
+			if x.isFaint():
+				string += "(FNT) "
+			string += "/ "
+		string += "]"
+
+		return string
+
 
 class AITrainer(Trainer):
 	"""Instance is the AI

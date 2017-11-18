@@ -28,7 +28,7 @@ class Battlefield(object):
 			return self.__youPokemon
 		return self.__oppPokemon
 
-	def useMove(move, user, target):
+	def useMove(self, move, user, target):
 		if move.getType() == "AtkMove":
 			damage = 0
 
@@ -70,10 +70,20 @@ class Battlefield(object):
 
 			#other
 
+			#DEFINES ATK AND DEF STATES
+			attack = 0
+			defense = 0
+			if move.isPhysical():
+				attack = user.getAtk()
+				defense = user.getDefense()
+			else:
+				attack = user.getSpAtk()
+				defense = user.getSpDefense()
+
 
 
 			if random.random() < move.getAccuracy(): #If move hits
-				damage = calc.damageCalc()
+				damage = calc.damageCalc(user.getLevel(), move, attack, defense, modifier)
 			else: #If misses
 				print "miss"
 
@@ -170,22 +180,21 @@ def pick(battlefield):
 	Precondition: battlefield is of type Battlefield
 	"""
 
-	x = raw_input("FIGHT/PKMN")
 	moves = []
 
-	if x == "FIGHT":
-		print "Select a move:"
-		for m in battlefield.currentlyOut().getMoves():
-			moves.append(m)
-			print(str(m))
 
-		x = raw_input("")
-		if x.lower() == str(moves[0]).lower():
-			return = moves[0]
-		elif x.lower() == str(moves[1]).lower():
-			return = moves[1]
-		elif x.lower() == str(moves[2]).lower():
-			return = moves[2]
-		elif x.lower() == str(moves[3]).lower():
-			return = moves[3]
+	print "Select a move:"
+	for m in battlefield.currentlyOut().getMoves():
+		moves.append(m)
+		print(str(m))
+
+	x = raw_input("")
+	if x.lower() == str(moves[0]).lower():
+		return = moves[0]
+	elif x.lower() == str(moves[1]).lower():
+		return = moves[1]
+	elif x.lower() == str(moves[2]).lower():
+		return = moves[2]
+	elif x.lower() == str(moves[3]).lower():
+		return = moves[3]
 

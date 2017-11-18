@@ -8,16 +8,19 @@ class Pokemon(object):
 	__special attack	[int]
 	__special defense	[int]
 	__speed				[int]
+
 	__moves 			[list]
-	__type				[list]
-	__item				[str]
 	__ability			[str]
+	__type				[list]
+
+	__item				[str]
+	__level				[int]
 
 	__isFaint			[bool]
 
 	"""
 
-	def __init__(self, stats, moves, ability, typing, item = None):
+	def __init__(self, stats, moves, ability, typing, item = None, level == 100):
 		"""Initializer: Creates a pokemon
         
         Parameter stats: A pokemon's current stats
@@ -49,18 +52,29 @@ class Pokemon(object):
 		self.__typing = typing
 
 		self.__item = item
+		self.__level = level
 
 		self.__isFaint = False
 		self.__status = ""
+
+	def getHP(self):
+		return self.__hp
+	def getAtk(self):
+		return self.__atk
+	def getDefense(self):
+		return self.__defense
+	def getSpAtk(self):
+		return self.__spatk
+	def getSpDef(self):
+		return self.__spdefense
+	def getSpe(self):
+		return self.__spe
 
 	def useMove(self, moveno):
 		self.__moves[moveno].use()
 
 	def getMoves(self):
 		return self.__moves
-
-	def getSpe(self):
-		return self.__spe
 
 	def hit(self, damage):
 		self.__hp -= damage
@@ -77,9 +91,12 @@ class Pokemon(object):
 
 	def getStatus(self):
 		return self.__status
-		
+
 	def setStatus(self, status):
 		self.__status = status
+
+	def getLevel(self):
+		return self.__level
 
 	#FAINTED METHODS
 
