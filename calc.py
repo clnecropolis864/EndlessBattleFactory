@@ -162,3 +162,6 @@ def typeChart(attack, defense):
 				multiplier *= 0.5
 			elif (x == "ice") or (x == "rock"):
 				multiplier *= 2
+
+
+	return multiplier
