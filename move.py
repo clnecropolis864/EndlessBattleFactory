@@ -45,7 +45,7 @@ class AtkMove(Move):
 	effect: any secondary effects		[str]
 	"""
 
-	def __init__(self, pp, type, id, name, power, cth = 1, physical = True, contact = False, effect = "none"):
+	def __init__(self, pp, type, id, name, power, cth = 1, physical = True, contact = False, effect = None):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
