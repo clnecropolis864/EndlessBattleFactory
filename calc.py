@@ -53,7 +53,7 @@ def typeChart(attack, defense):
 			if x == "ghost":
 				multiplier *= 0
 			elif (x == "rock") or (x == "steel"):
-				multipler *= 0.5:
+				multipler *= 0.5
 
 		elif attack == "fire":
 			if (x == "fire") or (x == "water") or ("x == rock") or (x == " dragon"):

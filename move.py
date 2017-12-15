@@ -29,7 +29,7 @@ class Move(object):
 		self.__ID = ID
 		self.__name = name
 
-	def __str__():
+	def __str__(self):
 		"""Ret__urns: Name of move"""
 
 		return self.__name
@@ -88,13 +88,22 @@ class AtkMove(Move):
 	def isPhysical(self):
 		return self.__physical
 
+	def use(self, target):
+		if target.getAbility() == "pressure":
+			self.__pp -= 2
+		else:
+			self.__pp -= 1
+
+		
+
+
 		
 
 class SpMove(Move):
 	"""Instance is a Move that doesn't attack
 
 	ADDITIONAL INSTANCE ATTRIBUTES:
-	cth: chance to hit					[float]
+	cth: chance to hit				[float]
 	effect: any secondary effects	[str]
 	"""
 

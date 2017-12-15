@@ -20,7 +20,8 @@ class Trainer(object):
 		self.__party = party
 
 	def getParty(self, i):
-		return party[i]
+		return self.__party[i]
+
 	def displayParty(self):
 		string = "["
 		for x in party:
@@ -44,5 +45,9 @@ class AITrainer(Trainer):
 		"""Initializer: Creates an AI"""
 
 		Trainer.__init__(self, name, party)
+
+	def selectMove():
+
+		pass #Oh dear...this will take some time.
 
 	

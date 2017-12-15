@@ -11,7 +11,7 @@ class Battlefield(object):
 	weather		[str]
 	"""
 
-	def __init__(self, youPokemon, oppPokemon, hazard, weather):
+	def __init__(self, youPokemon, oppPokemon, hazard="none", weather="none"):
 		self.__youPokemon = youPokemon
 		self.__oppPokemon = oppPokemon
 		self.__hazard = hazard
@@ -29,6 +29,30 @@ class Battlefield(object):
 		return self.__oppPokemon
 
 	def useMove(self, move, user, target):
+		"""Returns: None
+
+		Parameter move: The move. Is of type Move
+		Parameter user: The user. Is of type Pokemon
+		Parameter target: The target. Is of type Pokemon
+		"""
+
+		#Gives ID of move slected (ID of array)
+		moveID = 0
+		testBoolean = False 
+		"""Will set to true if user.getMoves[x] never
+		equals move"""
+
+		for x in range(1, len(user.getMoves())):
+			if user.getMoves[x] == move:
+				moveID = x
+				testboolean = True
+
+		if not testBoolean:
+			print "ERROR"
+
+
+
+
 		if move.getType() == "AtkMove":
 			damage = 0
 
@@ -49,7 +73,7 @@ class Battlefield(object):
 					modifier[0] = 1.5
 
 			#crit
-			crit = #filler, calculates crit chance
+			crit = 0 #filler, calculates crit chance
 			modifier[1] = crit
 
 			#random
@@ -87,10 +111,17 @@ class Battlefield(object):
 			else: #If misses
 				print "miss"
 
+			user.useMove(moveID)
+
+			"""
+			LEGACY CODE:	
 			target.hit(damage)
 			target.effect(move.effect())
 			user.effect(move.effect())
-		else:
+			"""
+
+
+		else: #If move is a special move
 			target.effect(move.effect())
 			user.effect(move.effect())
 
@@ -143,7 +174,7 @@ def run(you, opp):
 	Parameter opp: the opponent
 	Precondition: opp is of type Trainer
 	"""
-
+	battleOver = False
 	while not battleOver:
 
 		battlefield = Battlefield(you.getParty(0), opp.getParty(0)) #Defines battlefield
@@ -167,7 +198,8 @@ def run(you, opp):
 				battlefield.useMove(oppSelectedMove, battlefield.currentlyOut(1), battlefield.currentlyOut())
 				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
 
-
+		#Checks if battle is over
+		battleOver = battlefield.battleOver()		
 
 	
 
@@ -180,21 +212,21 @@ def pick(battlefield):
 	Precondition: battlefield is of type Battlefield
 	"""
 
-	moves = []
+	moves = [] #Represents the 4 moves you can choose from
 
 
 	print "Select a move:"
 	for m in battlefield.currentlyOut().getMoves():
 		moves.append(m)
-		print(str(m))
+		print str(m)
 
 	x = raw_input("")
 	if x.lower() == str(moves[0]).lower():
-		return = moves[0]
+		return moves[0]
 	elif x.lower() == str(moves[1]).lower():
-		return = moves[1]
+		return moves[1]
 	elif x.lower() == str(moves[2]).lower():
-		return = moves[2]
+		return moves[2]
 	elif x.lower() == str(moves[3]).lower():
-		return = moves[3]
+		return moves[3]
 

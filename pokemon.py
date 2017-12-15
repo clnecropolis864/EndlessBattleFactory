@@ -20,7 +20,7 @@ class Pokemon(object):
 
 	"""
 
-	def __init__(self, stats, moves, ability, typing, item = None, level == 100):
+	def __init__(self, stats, moves, ability, typing, item = None, level = 100):
 		"""Initializer: Creates a pokemon
         
         Parameter stats: A pokemon's current stats
@@ -70,8 +70,9 @@ class Pokemon(object):
 	def getSpe(self):
 		return self.__spe
 
-	def useMove(self, moveno):
-		self.__moves[moveno].use()
+	def useMove(self, moveno, target):
+		#Target is of type Pokemon
+		self.__moves[moveno].use(target)
 
 	def getMoves(self):
 		return self.__moves
@@ -91,6 +92,9 @@ class Pokemon(object):
 
 	def getStatus(self):
 		return self.__status
+
+	def getAbility(self):
+		return self.__ability
 
 	def setStatus(self, status):
 		self.__status = status
