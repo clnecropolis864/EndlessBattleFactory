@@ -1,3 +1,5 @@
+import effectdex
+
 class Move(object):
 	"""Instance is move
 	    
@@ -8,7 +10,7 @@ class Move(object):
 	name: name of move 				[str]
 	"""
 
-	def __init__(self, pp, Type, ID, name):
+	def __init__(self, pp, Type, ID, name, effect = "none"):
 		"""Initializer: Creates a Move
         
         Parameter pp: The pp of a move
@@ -28,11 +30,16 @@ class Move(object):
 		self.__Type = Type
 		self.__ID = ID
 		self.__name = name
+		self.__effect = effect
 
 	def __str__(self):
 		"""Ret__urns: Name of move"""
 
 		return self.__name
+
+	def effect(self, effect):
+		return effectdex.effects[effect]
+
 
 class AtkMove(Move):
 	"""Instance is a Move that attacks
@@ -45,7 +52,7 @@ class AtkMove(Move):
 	effect: any secondary effects		[str]
 	"""
 
-	def __init__(self, pp, type, id, name, power, cth = 1, physical = True, contact = False, effect = None):
+	def __init__(self, pp, Type, id, name, effect = "none", power, cth = 1, physical = True, contact = False):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
@@ -69,7 +76,7 @@ class AtkMove(Move):
         Precondition: effect is of type str
         """
 
-		Move.__init__(self, pp, type, id, name)
+		Move.__init__(self, pp, Type, id, name)
 		self.__power = power
 		self.__cth = cth
 		self.__physical = physical
@@ -94,6 +101,7 @@ class AtkMove(Move):
 		else:
 			self.__pp -= 1
 
+
 		
 
 
@@ -108,7 +116,7 @@ class SpMove(Move):
 	"""
 
 
-	def __init__(self, pp, type, id, name, cth = 1, effect = "none"):
+	def __init__(self, pp, Type, id, name, effect = "none", cth = 1, effect = "none"):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
@@ -123,15 +131,12 @@ class SpMove(Move):
 		Precondition: effect is of type str
 		"""
 
-		Move.__init__(self, pp, type, id, name)
+		Move.__init__(self, pp, Type, id, name)
 		self.__cth = cth
 		self.__effect = effect
 
 	def getType(self):
 		return "SpMove"
-
-	def effect(self, effect):
-		pass
 
 
 

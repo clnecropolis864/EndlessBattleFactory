@@ -13,3 +13,9 @@ class Effect(object):
 		self.__target = target
 		self.__chance = chance
 		self.__value = value
+
+	def getTarget(self):
+		return target
+
+	def getDetail(self):
+		return self.__detail

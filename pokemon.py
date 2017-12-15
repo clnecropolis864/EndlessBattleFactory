@@ -71,7 +71,11 @@ class Pokemon(object):
 		return self.__spe
 
 	def useMove(self, moveno, target):
-		#Target is of type Pokemon
+		"""Uses the move
+
+		Param moveno: index of the move 	[int]
+		Param target: target				[Pokemon]
+		"""
 		self.__moves[moveno].use(target)
 
 	def getMoves(self):

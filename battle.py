@@ -112,6 +112,9 @@ class Battlefield(object):
 				print "miss"
 
 			user.useMove(moveID)
+			target.hit(damage)
+			target.effect(move.effect())
+			user.effect(move.effect())
 
 			"""
 			LEGACY CODE:	
@@ -124,6 +127,9 @@ class Battlefield(object):
 		else: #If move is a special move
 			target.effect(move.effect())
 			user.effect(move.effect())
+
+			if move.effect().getTarget() == "battlefield": #Weather moves
+				self.__weather = move.effect().getDetail
 
 	def battleOver(self):
 		"""Returns: Whether the battle is over
