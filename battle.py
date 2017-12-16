@@ -1,5 +1,6 @@
 import random
 import calc
+import pygame as pg
 
 class Battlefield(object):
 	"""Instance is a battlefield
@@ -48,7 +49,7 @@ class Battlefield(object):
 				testboolean = True
 
 		if not testBoolean:
-			print "ERROR"
+			print ("ERROR")
 
 
 
@@ -109,7 +110,7 @@ class Battlefield(object):
 			if random.random() < move.getAccuracy(): #If move hits
 				damage = calc.damageCalc(user.getLevel(), move, attack, defense, modifier)
 			else: #If misses
-				print "miss"
+				print ("miss")
 
 			user.useMove(moveID)
 
@@ -215,12 +216,12 @@ def pick(battlefield):
 	moves = [] #Represents the 4 moves you can choose from
 
 
-	print "Select a move:"
+	print ("Select a move:")
 	for m in battlefield.currentlyOut().getMoves():
 		moves.append(m)
-		print str(m)
+		print (str(m))
 
-	x = raw_input("")
+	x = input("")
 	if x.lower() == str(moves[0]).lower():
 		return moves[0]
 	elif x.lower() == str(moves[1]).lower():
