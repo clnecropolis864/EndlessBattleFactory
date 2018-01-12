@@ -32,6 +32,8 @@ class Trainer(object):
 		string += "]"
 
 		return string
+	def test():
+		return "test"
 
 
 class AITrainer(Trainer):
@@ -50,47 +52,45 @@ class AITrainer(Trainer):
 		pass #Oh dear...this will take some time.
 
 	
-	def buildTeam():
-		from pokedex import pk
-		import random
+def buildTeam():
+	"""Builds a team"""
+	from pokedex import pk
+	import random
 
-		partyStats = [0, 0, 0, 0, 0]
+	partyStats = [0, 0, 0, 0, 0]
 
-		#First pokemon
-		index1 = random.randomint(0, len(pk) - 1)
-		self.__party[0] = pk[index1]
+	#First pokemon
+	index1 = random.randomint(0, len(pk) - 1)
+	self.__party[0] = pk[index1]
 
-		#Inputting pokemon's notes into partyStats
-		for i in range(0, len(partyStats)):
-			assert len(self.__party[0].getNotes()) == partyStats
-			partyStats[i] += self.__party[0].getNotes()[i]
+	#Inputting pokemon's notes into partyStats
+	for i in range(0, len(partyStats)):
+		assert len(self.__party[0].getNotes()) == partyStats
+		partyStats[i] += self.__party[0].getNotes()[i]
 
-		#Second pokemon
-		index2 = 0
-		pokemon2 = None
+	#Second pokemon
+	index2 = 0
+	pokemon2 = None
 
-		while True:
-			index2 = random.randint(0,len(pk) - 1)
+	while True:
+		index2 = random.randint(0,len(pk) - 1)
 
-			if index2 != index1:
-				pokemon2 = pk[index2]
-				if not sharesItem(partyStats, pokemon2.getNotes()):
-					break
+		if index2 != index1:
+			pokemon2 = pk[index2]
+			if not sharesItem(partyStats, pokemon2.getNotes()):
+				break
 
-		#Third pokemon
-		index3 = 0
-		pokemon3 = None
+	#Third pokemon
+	index3 = 0
+	pokemon3 = None
 
-		while True:
-			index2 = random.randint(0,len(pk) - 1)
+	while True:
+		index2 = random.randint(0,len(pk) - 1)
 
-			if (index3 != index2) and (index3 != index1):
-				pokemon3 = pk[index3]
-				if not sharesItem(partyStats, pokemon2.getNotes()):
-					break
-
-
-
+		if (index3 != index2) and (index3 != index1):
+			pokemon3 = pk[index3]
+			if not sharesItem(partyStats, pokemon2.getNotes()):
+				break
 #Helper methods
 def highest(li, num = 1):
 	"""Returns: the index of <num> greatest items in list li

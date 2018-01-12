@@ -127,7 +127,7 @@ class SpMove(Move):
 	"""
 
 
-	def __init__(self, pp, Type, id, name, effect = "none", notes = "", cth = 1, effect = "none"):
+	def __init__(self, pp, Type, id, name, effect = "none", notes = "", cth = 1):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
@@ -144,7 +144,6 @@ class SpMove(Move):
 
 		Move.__init__(self, pp, Type, id, name, effect, notes)
 		self.__cth = cth
-		self.__effect = effect
 
 	def getType(self):
 		return "SpMove"

@@ -1,6 +1,6 @@
 import battle
 import pokedex as dex
-from trainer import Trainer, AITrainer
+import trainer
 from pokemon import Pokemon
 import copy
 import pygame as pg
@@ -34,13 +34,12 @@ while True:
 	Blastoise = dex.blastoise()
 
 	party = [dex.charizard(), dex.venusaur(), dex.blastoise()]
-
-	you = Trainer(name, party)
+	you = trainer.Trainer(name, party)
 
 	oppName = "John"
-	oppParty = copy.copy(party)
+	oppParty = trainer.buildTeam()
+	opp = trainer.AITrainer(oppName, oppParty)
 
-	opp = AITrainer(oppName, oppParty)
 
 	battle.run(you, opp)
 
