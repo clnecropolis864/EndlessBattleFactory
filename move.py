@@ -10,7 +10,7 @@ class Move(object):
 	name: name of move 				[str]
 	"""
 
-	def __init__(self, pp, Type, ID, name, effect = "none"):
+	def __init__(self, pp, Type, ID, name, effect = "none", notes = ""):
 		"""Initializer: Creates a Move
         
         Parameter pp: The pp of a move
@@ -24,6 +24,14 @@ class Move(object):
 
         Parameter name: The current pokemon on the trainer
         Precondition: name is of type str
+
+        Parameter effect: The side effects of the move
+        Precondition: effect is of type str
+
+        Parameter notes: The details of a move's usage. i.e, 
+        	swords dance is for support, flamethrower is to
+        	attack, etc.
+        Precondition: notes is of type str
         """
 
 		self.__pp = pp
@@ -31,11 +39,14 @@ class Move(object):
 		self.__ID = ID
 		self.__name = name
 		self.__effect = effect
+		self.__notes = notes
 
 	def __str__(self):
-		"""Ret__urns: Name of move"""
-
+		"""Returns: Name of move"""
 		return self.__name
+
+	def getNotes(self):
+		return self.__notes
 
 	def effect(self, effect):
 		return effectdex.effects[effect]
@@ -52,7 +63,7 @@ class AtkMove(Move):
 	effect: any secondary effects		[str]
 	"""
 
-	def __init__(self, pp, Type, id, name, effect = "none", power, cth = 1, physical = True, contact = False):
+	def __init__(self, pp, Type, id, name, effect = "none", notes = "", power = 0, cth = 1, physical = True, contact = False):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
@@ -76,7 +87,7 @@ class AtkMove(Move):
         Precondition: effect is of type str
         """
 
-		Move.__init__(self, pp, Type, id, name)
+		Move.__init__(self, pp, Type, id, name, effect, notes)
 		self.__power = power
 		self.__cth = cth
 		self.__physical = physical
@@ -116,7 +127,7 @@ class SpMove(Move):
 	"""
 
 
-	def __init__(self, pp, Type, id, name, effect = "none", cth = 1, effect = "none"):
+	def __init__(self, pp, Type, id, name, effect = "none", notes = "", cth = 1, effect = "none"):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
@@ -131,7 +142,7 @@ class SpMove(Move):
 		Precondition: effect is of type str
 		"""
 
-		Move.__init__(self, pp, Type, id, name)
+		Move.__init__(self, pp, Type, id, name, effect, notes)
 		self.__cth = cth
 		self.__effect = effect
 

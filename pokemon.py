@@ -20,7 +20,7 @@ class Pokemon(object):
 
 	"""
 
-	def __init__(self, stats, moves, ability, typing, item = None, level = 100):
+	def __init__(self, stats, moves, ability, typing, notes = [], item = None, level = 100):
 		"""Initializer: Creates a pokemon
         
         Parameter stats: A pokemon's current stats
@@ -36,9 +36,17 @@ class Pokemon(object):
         Precondition: typing is of type list of length between 1 and 2
         Precondition: list items are of type str
 
+        Parameter notes: The details on a pokemon's use
+        Precondition: notes is of type list with length 5 (for now)
+
         Parameter item: A pokemon's current held item
         Precondition: item is of type string
+
+        Parameter level: A pokemon's level
+        Precondition: level is of type int
         """
+
+        #Stats
 		self.__hp = stats[0]
 		self.__atk = stats[1]
 		self.__defense = stats[2]
@@ -47,16 +55,19 @@ class Pokemon(object):
 		self.__spe = stats[5]
 
 		self.__moves = moves
-
 		self.__ability = ability 
 		self.__typing = typing
 
+		#With default values
 		self.__item = item
 		self.__level = level
+		self.__notes = notes
 
+		#Not a parameter
 		self.__isFaint = False
 		self.__status = ""
 
+	#GETTER METHODS
 	def getHP(self):
 		return self.__hp
 	def getAtk(self):
@@ -69,6 +80,18 @@ class Pokemon(object):
 		return self.__spdefense
 	def getSpe(self):
 		return self.__spe
+	def getMoves(self):
+		return self.__moves
+	def getAbility(self):
+		return self.__ability
+	def getTyping(self):
+		return self.__typing
+	def getLevel(self):
+		return self.__level
+	def getNotes():
+		return self.__notes
+	def getStatus(self):
+		return self.__status
 
 	def useMove(self, moveno, target):
 		"""Uses the move
@@ -78,10 +101,17 @@ class Pokemon(object):
 		"""
 		self.__moves[moveno].use(target)
 
-	def getMoves(self):
-		return self.__moves
 
 	def hit(self, damage):
+		"""Gets hit
+
+		Subtracts damage from hp
+		If hp is less than 0, the pokemon
+		is fainted
+
+		Parameter damage: the damage dealt
+		Precondition: damage is an int
+		"""
 		self.__hp -= damage
 
 		if hp <= 0:
@@ -91,26 +121,20 @@ class Pokemon(object):
 	def effect(self, effect):
 		pass
 
-	def getTyping(self):
-		return self.__typing
-
-	def getStatus(self):
-		return self.__status
-
-	def getAbility(self):
-		return self.__ability
 
 	def setStatus(self, status):
 		self.__status = status
-
-	def getLevel(self):
-		return self.__level
 
 	#FAINTED METHODS
 
 	def isFaint(self):
 		return self.__isFaint
 
+"""Legend:
+[Physical attack, Special attack, Physical Defense, Special Defense, Support]
+"""
+build = {"SpecialAttacker": [0, 5, 0, 0, 1]
+}
 
 	
 	
