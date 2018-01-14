@@ -5,6 +5,7 @@ from pokemon import Pokemon
 import copy
 import pygame as pg
 import sys
+import graphicsClasses
 
 pg.init()
 pg.font.init()
@@ -34,11 +35,12 @@ while True:
 	Blastoise = dex.blastoise()
 
 	party = [dex.charizard(), dex.venusaur(), dex.blastoise()]
+	name = "test"
 	you = trainer.Trainer(name, party)
 
 	oppName = "John"
-	oppParty = trainer.buildTeam()
-	opp = trainer.AITrainer(oppName, oppParty)
+	opp = trainer.AITrainer(oppName)
+	oppParty = opp.buildTeam()
 
 
 	battle.run(you, opp)

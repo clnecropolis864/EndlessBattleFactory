@@ -88,7 +88,7 @@ class Pokemon(object):
 		return self.__typing
 	def getLevel(self):
 		return self.__level
-	def getNotes():
+	def getNotes(self):
 		return self.__notes
 	def getStatus(self):
 		return self.__status
@@ -133,7 +133,10 @@ class Pokemon(object):
 """Legend:
 [Physical attack, Special attack, Physical Defense, Special Defense, Support]
 """
-build = {"SpecialAttacker": [0, 5, 0, 0, 1]
+build = {
+"SpecialAttacker": [0, 5, 2, 0, 1],
+"Utility": [1,1,1,1,5],
+"SwordsDance": [4, 0, 0, 0, 4]
 }
 
 	

@@ -49,3 +49,6 @@ class InputBox(object):
         screen.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
         # Blit the rect.
         pg.draw.rect(screen, self.color, self.rect, 2)
+
+    def getText(self):
+        return self.text
