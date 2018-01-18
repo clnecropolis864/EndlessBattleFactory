@@ -10,7 +10,7 @@ class Move(object):
 	name: name of move 				[str]
 	"""
 
-	def __init__(self, pp, Type, ID, name, effect = "none", notes = ""):
+	def __init__(self, pp, Type, ID, name, effect = None, notes = ""):
 		"""Initializer: Creates a Move
         
         Parameter pp: The pp of a move
@@ -26,7 +26,7 @@ class Move(object):
         Precondition: name is of type str
 
         Parameter effect: The side effects of the move
-        Precondition: effect is of type str
+        Precondition: effect is of object Effect
 
         Parameter notes: The details of a move's usage. i.e, 
         	swords dance is for support, flamethrower is to
@@ -48,8 +48,11 @@ class Move(object):
 	def getNotes(self):
 		return self._notes
 
-	def effect(self, effect):
-		return effectdex.effects[effect]
+	def effect(battlefield):
+		effectdex.bf = battlefield
+		effectdex.e = self._effect
+		battlefield = effectdex.effects[self._effect.getKey()]
+		return battlefield
 
 
 class AtkMove(Move):

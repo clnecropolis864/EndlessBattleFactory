@@ -1,6 +1,7 @@
 import random
 import calc
 import pygame as pg
+import effectdex
 
 class Battlefield(object):
 	"""Instance is a battlefield
@@ -115,10 +116,10 @@ class Battlefield(object):
 			else: #If misses
 				print ("miss")
 
+			#Use/Effects
 			user.useMove(moveID)
 			target.hit(damage)
-			target.effect(move.effect())
-			user.effect(move.effect())
+			move.effect(self)
 
 			"""
 			LEGACY CODE:	
@@ -241,7 +242,7 @@ def pick(battlefield):
 		return moves[3]
 
 def AIPick(battlefield):
-	maxIndex = 0
+	maxIndex = 0e
 	maxDamage = 0
 	modifier = battlefield.generateModifier()
 	for x in range(battlefield.currentlyOut(1).getMoves()):

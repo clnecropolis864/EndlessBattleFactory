@@ -1,3 +1,5 @@
+"""
+LEGACY CODE
 from effect import Effect
 effects = {
 	"alwaysHit":Effect("alwaysHit", "self"),
@@ -9,6 +11,20 @@ effects = {
 	"sharpAttack":Effect("sharpAttack", "self"),
 	"doubleDig":Effect("doubleDig", "one"),
 	"slpPowder":Effect("slpPowder", "one"),
-	
-
 }
+"""
+bf = None
+e = None
+
+from trainer import Trainer
+effects = {
+	"alwaysHit":alwaysHit(t),
+	"sunny"sunny(bf):,
+	"solarBeam":solarBeam(t),
+	"surf":surf(t),
+	"freeze":freeze(t),
+	"rapidSpin"rapidSpin(bf):,
+	"sharpAttack":sharpAttack(t),
+	"doubleDig":doubleDig(t),
+	"slpPowder":slpPowder(t),
+	}
