@@ -29,6 +29,46 @@ class Battlefield(object):
 			return self.__youPokemon
 		return self.__oppPokemon
 
+	def generateModifier(self, move, user, target):
+		modifier = [1, 1, 1, 1, 1, 1, 1]
+
+		#DEFINES MODIFIER VALUES
+		#Weather
+		if self.__weather == "sunny":
+			if move.getType() == "fire":
+				modifier[0] = 1.5
+			elif move.getType() == "water":
+				modifier[0] = 0.5
+		elif self.__weather == "rainy":
+			if move.getType() == "fire":
+				modifier[0] = 0.5
+			elif move.getType() == "water":
+				modifier[0] = 1.5
+
+		#crit
+		crit = 0 #filler, calculates crit chance
+		modifier[1] = crit
+
+		#random
+		randModifier = int(random.random() * 16 + 85)
+		randModifier /= 100.0
+		modifier[2]
+
+		#STAB
+		if move.getType() in user.getTyping():
+			modifier[3] = 1.5
+
+		#type
+		modifier[4] = calc.typeChart(move.getType(), target.getTyping())
+
+		#burn
+		if user.getStatus() == "burn":
+			modifier[5] = 0.5
+
+		#other
+
+		return modifier
+
 	def useMove(self, move, user, target):
 		"""Returns: None
 
@@ -51,49 +91,12 @@ class Battlefield(object):
 		if not testBoolean:
 			print ("ERROR")
 
-
-
+		modifier = generateModifier()
 
 		if move.getType() == "AtkMove":
 			damage = 0
 
 			#modifier = [weather, crit, random, STAB, type, burn, other]
-			modifier = [1, 1, 1, 1, 1, 1, 1]
-
-			#DEFINES MODIFIER VALUES
-			#Weather
-			if self.__weather == "sunny":
-				if move.getType() == "fire":
-					modifier[0] = 1.5
-				elif move.getType() == "water":
-					modifier[0] = 0.5
-			elif self.__weather == "rainy":
-				if move.getType() == "fire":
-					modifier[0] = 0.5
-				elif move.getType() == "water":
-					modifier[0] = 1.5
-
-			#crit
-			crit = 0 #filler, calculates crit chance
-			modifier[1] = crit
-
-			#random
-			randModifier = int(random.random() * 16 + 85)
-			randModifier /= 100.0
-			modifier[2]
-
-			#STAB
-			if move.getType() in user.getTyping():
-				modifier[3] = 1.5
-
-			#type
-			modifier[4] = calc.typeChart(move.getType(), target.getTyping())
-
-			#burn
-			if user.getStatus() == "burn":
-				modifier[5] = 0.5
-
-			#other
 
 			#DEFINES ATK AND DEF STATES
 			attack = 0
@@ -187,7 +190,7 @@ def run(you, opp):
 		battlefield = Battlefield(you.getParty(0), opp.getParty(0)) #Defines battlefield
 
 		selectedMove = pick(battlefield) #Move select
-		oppSelectedMove = opp.selectMove() #AI picks a move
+		oppSelectedMove = AIPick(battlefield) #AI picks a move
 
 		#Checks speed, executes moves accordingly
 		if (battlefield.currentlyOut().getSpe()) > (battlefield.currentlyOut(1).getSpe()):
@@ -237,3 +240,26 @@ def pick(battlefield):
 	elif x.lower() == str(moves[3]).lower():
 		return moves[3]
 
+def AIPick(battlefield):
+	maxIndex = 0
+	maxDamage = 0
+	modifier = battlefield.generateModifier()
+	for x in range(battlefield.currentlyOut(1).getMoves()):
+		damage = 0
+		attack = 0
+		defense = 0
+
+		if battlefield.currentlyOut(1).getMoves()[x].isPhysical():
+			attack = user.getAtk()
+			defense = user.getDefense()
+		else:
+			attack = user.getSpAtk()
+			defense = user.getSpDefense()
+
+		damage = calc.damageCalc(user.getLevel(), move, attack, defense, modifier)
+
+		if damage > maxDamage:
+			maxDamage = damage
+			maxIndex = x
+
+	return battlefield.currentlyOut(1).getMoves()[maxIndex]

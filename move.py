@@ -34,19 +34,19 @@ class Move(object):
         Precondition: notes is of type str
         """
 
-		self.__pp = pp
-		self.__Type = Type
-		self.__ID = ID
-		self.__name = name
-		self.__effect = effect
-		self.__notes = notes
+		self._pp = pp
+		self._Type = Type
+		self._ID = ID
+		self._name = name
+		self._effect = effect
+		self._notes = notes
 
 	def __str__(self):
 		"""Returns: Name of move"""
-		return self.__name
+		return self._name
 
 	def getNotes(self):
-		return self.__notes
+		return self._notes
 
 	def effect(self, effect):
 		return effectdex.effects[effect]
@@ -98,19 +98,19 @@ class AtkMove(Move):
 		return "AtkMove"
 
 	def getPower(self):
-		return self.__power
+		return self._power
 
 	def getAccuracy(self):
-		return self.__cth
+		return self._cth
 
 	def isPhysical(self):
-		return self.__physical
+		return self._physical
 
 	def use(self, target):
 		if target.getAbility() == "pressure":
-			self.__pp -= 2
+			self._pp -= 2
 		else:
-			self.__pp -= 1
+			self._pp -= 1
 
 
 		
@@ -143,10 +143,50 @@ class SpMove(Move):
 		"""
 
 		Move.__init__(self, pp, Type, id, name, effect, notes)
-		self.__cth = cth
+		self._cth = cth
 
 	def getType(self):
 		return "SpMove"
+
+class moveType(object):
+	"""Instance is a type of move. Only used in move objects
+	Just makes it easier to track type effectiveness
+	"""
+
+	def __init__(self, name, strengths, weaknesses, noEffect = ""):
+		"""Initializer: Creates an instance of moveType
+
+		Param name: The name of the type
+		Precondition: name is of type str
+
+		Param strengths: The things it's (offensively) good against
+		Precondition: strengths a list with items of type str
+
+		Param weaknesses: The thing's it's (offensively) bad against
+		Precondition: weaknesses is a list with items of type str
+
+		Param noEffect: The thing that it has no effect against
+		Precondition: noEffect is of type str
+		"""
+
+		self.__name = name
+		self.__strengths = strengths
+		self.__weaknesses = weaknesses
+		self.__noEffect = noEffect
+
+	def getName():
+		return self.__name
+
+	def getStrengths():
+		return self.__strengths
+
+	def getWeaknesses():
+		return self.__weaknesses
+
+	def getNoEffect():
+		return self.noEffect
+
+
 
 
 
