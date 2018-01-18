@@ -18,13 +18,21 @@ e = None
 
 from trainer import Trainer
 effects = {
-	"alwaysHit":alwaysHit(t),
+	"alwaysHit":alwaysHit(bf),
 	"sunny"sunny(bf):,
-	"solarBeam":solarBeam(t),
-	"surf":surf(t),
-	"freeze":freeze(t),
+	"solarBeam":solarBeam(bf),
+	"surf":surf(bf),
+	"freeze":freeze(bf),
 	"rapidSpin"rapidSpin(bf):,
-	"sharpAttack":sharpAttack(t),
-	"doubleDig":doubleDig(t),
-	"slpPowder":slpPowder(t),
+	"sharpAttack":sharpAttack(bf),
+	"doubleDig":doubleDig(bf),
+	"slpPowder":slpPowder(bf),
 	}
+
+def sunny(battlefield):
+	battlefield.setWeather("sunny")
+	return battlefield
+
+def solarBeam(battlefield):
+	pass
+

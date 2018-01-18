@@ -2,8 +2,8 @@ class Effect(object):
 	"""Instance is the effect of a move
 
 	INSTANCE ATTRIBUTES:
-	detail	[str]
-	target 	[str]
+	key		[str]
+	target 	[list] (str)
 	chance	[float]
 	value	[float]
 	"""

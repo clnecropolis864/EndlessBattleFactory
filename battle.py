@@ -110,16 +110,16 @@ class Battlefield(object):
 				defense = user.getSpDefense()
 
 
-
-			if random.random() < move.getAccuracy(): #If move hits
-				damage = calc.damageCalc(user.getLevel(), move, attack, defense, modifier)
-			else: #If misses
-				print ("miss")
+			if move.getEffect.getKey != "alwaysHit":
+				if random.random() < move.getAccuracy(): #If move hits
+					damage = calc.damageCalc(user.getLevel(), move, attack, defense, modifier)
+				else: #If misses
+					print ("miss")
 
 			#Use/Effects
 			user.useMove(moveID)
 			target.hit(damage)
-			move.effect(self)
+			self = move.effect(self)
 
 			"""
 			LEGACY CODE:	
@@ -168,8 +168,14 @@ class Battlefield(object):
 				allFaint = False
 		return allFaint
 
-	def getWeather():
+
+	"""------------------
+	GETTER/SETTER METHODS
+	-------------------"""
+	def getWeather(self):
 		return self.__weather
+	def setWeather(self, wthr):
+		self.__weather = wthr
 
 
 
