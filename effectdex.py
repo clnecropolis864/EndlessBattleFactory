@@ -17,13 +17,14 @@ bf = None
 e = None
 
 from trainer import Trainer
+import random
 effects = {
 	"alwaysHit":alwaysHit(bf),
-	"sunny"sunny(bf):,
+	"sunny":sunny(bf),
 	"solarBeam":solarBeam(bf),
 	"surf":surf(bf),
 	"freeze":freeze(bf),
-	"rapidSpin"rapidSpin(bf):,
+	"rapidSpin":rapidSpin(bf),
 	"sharpAttack":sharpAttack(bf),
 	"doubleDig":doubleDig(bf),
 	"slpPowder":slpPowder(bf),
@@ -31,8 +32,13 @@ effects = {
 
 def sunny(battlefield):
 	battlefield.setWeather("sunny")
-	return battlefield
 
 def solarBeam(battlefield):
 	pass
+
+def surf(battlefield):
+	pass
+def freeze(battlefield):
+	if random.random() < 0.1:
+		battlefield.currentlyOut(1).setStatus("freeze")
 

@@ -119,7 +119,7 @@ class Battlefield(object):
 			#Use/Effects
 			user.useMove(moveID)
 			target.hit(damage)
-			self = move.effect(self)
+			move.effect(self)
 
 			"""
 			LEGACY CODE:	
@@ -248,10 +248,11 @@ def pick(battlefield):
 		return moves[3]
 
 def AIPick(battlefield):
-	maxIndex = 0e
+	maxIndex = 0
 	maxDamage = 0
 	modifier = battlefield.generateModifier()
 	for x in range(battlefield.currentlyOut(1).getMoves()):
+		#Runs each move through damage calc, sees which one is the biggest
 		damage = 0
 		attack = 0
 		defense = 0
