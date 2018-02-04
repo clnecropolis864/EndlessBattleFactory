@@ -47,9 +47,6 @@ class AITrainer(Trainer):
 		"""Initializer: Creates an AI"""
 		Trainer.__init__(self, name, party)
 
-	def selectMove():
-		pass #Oh dear...this will take some time.
-
 	def buildTeam(self):
 		"""Builds a team"""
 		from pokedex import pk

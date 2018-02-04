@@ -1,3 +1,5 @@
+"""
+LEGACY CODE
 from effect import Effect
 effects = {
 	"alwaysHit":Effect("alwaysHit", "self"),
@@ -9,6 +11,34 @@ effects = {
 	"sharpAttack":Effect("sharpAttack", "self"),
 	"doubleDig":Effect("doubleDig", "one"),
 	"slpPowder":Effect("slpPowder", "one"),
-	
-
 }
+"""
+bf = None
+e = None
+
+from trainer import Trainer
+import random
+effects = {
+	"alwaysHit":alwaysHit(bf),
+	"sunny":sunny(bf),
+	"solarBeam":solarBeam(bf),
+	"surf":surf(bf),
+	"freeze":freeze(bf),
+	"rapidSpin":rapidSpin(bf),
+	"sharpAttack":sharpAttack(bf),
+	"doubleDig":doubleDig(bf),
+	"slpPowder":slpPowder(bf),
+	}
+
+def sunny(battlefield):
+	battlefield.setWeather("sunny")
+
+def solarBeam(battlefield):
+	pass
+
+def surf(battlefield):
+	pass
+def freeze(battlefield):
+	if random.random() < 0.1:
+		battlefield.currentlyOut(1).setStatus("freeze")
+

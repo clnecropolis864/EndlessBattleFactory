@@ -2,14 +2,14 @@ class Effect(object):
 	"""Instance is the effect of a move
 
 	INSTANCE ATTRIBUTES:
-	detail	[str]
-	target 	[str]
+	key		[str]
+	target 	[list] (str)
 	chance	[float]
 	value	[float]
 	"""
 
-	def __init__(self, detail, target, chance = 1, value = 0):
-		self.__detail = detail
+	def __init__(self, key, target, chance = 1, value = 0):
+		self.__key = detail
 		self.__target = target
 		self.__chance = chance
 		self.__value = value
@@ -17,5 +17,5 @@ class Effect(object):
 	def getTarget(self):
 		return target
 
-	def getDetail(self):
-		return self.__detail
+	def getKey(self):
+		return self.__key

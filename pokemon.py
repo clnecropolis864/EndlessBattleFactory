@@ -15,8 +15,10 @@ class Pokemon(object):
 
 	__item				[str]
 	__level				[int]
+	__notes				[list]
 
 	__isFaint			[bool]
+	__status			[str]
 
 	"""
 
@@ -92,6 +94,9 @@ class Pokemon(object):
 		return self.__notes
 	def getStatus(self):
 		return self.__status
+
+	def setStatus(self, status):
+		self.status = status
 
 	def useMove(self, moveno, target):
 		"""Uses the move
