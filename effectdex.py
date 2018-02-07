@@ -13,24 +13,26 @@ effects = {
 	"slpPowder":Effect("slpPowder", "one"),
 }
 """
-bf = None
-e = None
 
 from trainer import Trainer
 import random
+from runner import Battlefield
+bf = Battlefield()
+def setBf(battlefield):
+	bf = battlefield
 
-def alwaysHit(battlefield):
+def alwaysHit():
 	pass
 
-def sunny(battlefield):
+def sunny():
 	battlefield.setWeather("sunny")
 
-def solarBeam(battlefield):
+def solarBeam():
 	pass
 
-def surf(battlefield):
+def surf():
 	pass
-def freeze(battlefield):
+def freeze():
 	if random.random() < 0.1:
 		battlefield.currentlyOut(1).setStatus("freeze")
 		

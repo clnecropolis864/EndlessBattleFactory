@@ -8,9 +8,10 @@ class Effect(object):
 	value	[float]
 	"""
 
-	def __init__(self, key, target, chance = 1, value = 0):
+	def __init__(self, key, order, target, chance = 1, value = 0):
 		self.__key = detail
 		self.__target = target
+		self.__order = order
 		self.__chance = chance
 		self.__value = value
 

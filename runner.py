@@ -6,6 +6,7 @@ import copy
 import pygame as pg
 import sys
 from textbox import TextInput
+from graphicsClasses import *
 
 #Initializers
 pg.init()
@@ -25,16 +26,11 @@ name = ""
 def menu():
 	pokemonSelected = 0
 
-	while True:
+	while pokemonSelected < 3:
 		#Preliminaries 
 		screen.fill((225, 225, 225))
 		font = pg.font.SysFont('Roboto', 30)
 		events = pg.event.get()
-
-		for event in events:
-			if event.type == pg.QUIT:
-				# Close window and exit program
-				sys.exit()
 
 		# Feed it with events every frame
 		textinput.update(events)
@@ -60,17 +56,27 @@ def menu():
 		screen.blit(pickPokemon, (0, 100))
 
 		#Sprites
-		venuS = pg.image.load("sprites/003.png")
-		screen.blit(venuS, (0, 150))
-		chariS = pg.image.load("sprites/006.png")
-		screen.blit(chariS, (venuS.get_width(), 150))
-		blastS = pg.image.load("sprites/009.png")
-		screen.blit(blastS, (venuS.get_width() + chariS.get_width(), 150))
+		venuS = Clickable(pg.image.load("sprites/003.png"), PopUp(20, 60, 3))
+		venuR = venuS.surface.get_rect()
+		screen.blit(venuS.surface, (0, 150))
+		chariS = Clickable(pg.image.load("sprites/006.png"), PopUp(20, 60, 3))
+		chariR = chariS.surface.get_rect()
+		screen.blit(chariS.surface, (venuS.surface.get_width(), 150))
+		blastS = Clickable(pg.image.load("sprites/009.png"), PopUp(20, 60, 3))
+		blastR = blastS.surface.get_rect()
+		screen.blit(blastS.surface, (venuS.surface.get_width() + chariS.surface.get_width(), 150))
+
+		for event in events:
+			if event.type == pg.QUIT:
+				# Close window and exit program
+				sys.exit()
+			if event.type == pg.MOUSEBUTTONDOWN:
+				if venuR.collidepoint(event.pos):
+					venuS.stored.set_colorkey((0, 0, 0))
+					screen.blit(venuS.stored, event.pos)
 
 		pg.display.update()
 
-		if pokemonSelected > 2:
-			break
 
 		clock.tick(60)
 

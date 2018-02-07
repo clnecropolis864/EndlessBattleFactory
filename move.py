@@ -87,6 +87,8 @@ class AtkMove(Move):
         Precondition: contact is of type bool
 
         Parameter effect: The side effect of the move
+        Parameter effect: str will be passed into effectdex dict,
+        Which calls a function. 
         Precondition: effect is of type str
         """
 
