@@ -26,6 +26,14 @@ name = ""
 def menu():
 	pokemonSelected = 0
 
+	venuS = Clickable(pg.image.load("sprites/003.png"), PopUp(42, 42, 3))
+	chariS = Clickable(pg.image.load("sprites/006.png"), PopUp(42, 42, 3))
+	blastS = Clickable(pg.image.load("sprites/009.png"), PopUp(42, 42, 3))
+
+	options = [venuS, chariS, blastS]
+
+	lastClick = (0, 0)
+
 	while pokemonSelected < 3:
 		#Preliminaries 
 		screen.fill((225, 225, 225))
@@ -56,24 +64,32 @@ def menu():
 		screen.blit(pickPokemon, (0, 100))
 
 		#Sprites
-		venuS = Clickable(pg.image.load("sprites/003.png"), PopUp(20, 60, 3))
-		venuR = venuS.surface.get_rect()
-		screen.blit(venuS.surface, (0, 150))
-		chariS = Clickable(pg.image.load("sprites/006.png"), PopUp(20, 60, 3))
-		chariR = chariS.surface.get_rect()
-		screen.blit(chariS.surface, (venuS.surface.get_width(), 150))
-		blastS = Clickable(pg.image.load("sprites/009.png"), PopUp(20, 60, 3))
-		blastR = blastS.surface.get_rect()
-		screen.blit(blastS.surface, (venuS.surface.get_width() + chariS.surface.get_width(), 150))
+		r1 = screen.blit(options[0].surface, (0, 150))
+		r2 = screen.blit(options[1].surface, (options[0].surface.get_width(), 150))
+		r3 = screen.blit(options[2].surface, (options[0].surface.get_width() + options[1].surface.get_width(), 150))
+
+		optionsR = [r1, r2, r3]
 
 		for event in events:
 			if event.type == pg.QUIT:
 				# Close window and exit program
 				sys.exit()
 			if event.type == pg.MOUSEBUTTONDOWN:
-				if venuR.collidepoint(event.pos):
-					venuS.stored.set_colorkey((0, 0, 0))
-					screen.blit(venuS.stored, event.pos)
+				print(event.pos)
+				lastClick = event.pos
+				for i in range(len(optionsR)):
+					if optionsR[i].collidepoint(event.pos):
+						print("hi!")
+						options[i].stored.draw()
+						options[i].active = True
+						screen.blit(options[i].stored.surface, event.pos)
+					else:
+						options[i].active = False
+
+		for pokemon in options:
+			if pokemon.active:
+				pokemon.stored.draw()
+				screen.blit(pokemon.stored.surface, lastClick)
 
 		pg.display.update()
 

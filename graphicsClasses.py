@@ -3,7 +3,7 @@ import pygame.locals as pl
 
 class Clickable:
 
-	def __init__(self, surface, stored):
+	def __init__(self, surface, stored, active = False):
 		"""Initializer: Creates a Clickable object
 
 		Basically a surface that creates something when clicked.
@@ -11,6 +11,7 @@ class Clickable:
 		accordingly."""
 		self.surface = surface
 		self.stored = stored
+		self.active = active
 
 	def getSurface():
 		return self.surface
@@ -39,11 +40,14 @@ class PopUp:
 
 	def draw(self):
 		#Puts various elements in their place
-		for i in range(self.elements):
-			self.surface.blit(self.elements[i], (self.x, self.y + 
-				(self.height / numElements) * i))
+		self.surface.set_alpha(255)
+		self.surface.fill((0, 0, 0))
 
-	def update(self, events):
+		for i in range(len(self.elements)):
+			self.surface.blit(self.elements[i], (self.x, self.y + 
+				(self.height / self.numElements) * i))
+
+	def update(self, events): #Unused
 		for event in events:
 			if event.type == pg.MOUSEBUTTONDOWN:
 				if self.surface.get_rect().collidepoint(event.pos): #If click within boundaries
