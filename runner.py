@@ -24,6 +24,7 @@ name = ""
 
 
 def menu():
+	"""Loads the Main Menu"""
 	pokemonSelected = 0
 
 	venuS = Clickable(pg.image.load("sprites/003.png"), PopUp(42, 42, 3))
@@ -97,6 +98,7 @@ def menu():
 		clock.tick(60)
 
 def start():
+	"""Loads the battle"""
 	Charizard = dex.charizard()
 	Venusaur = dex.venusaur()
 	Blastoise = dex.blastoise()

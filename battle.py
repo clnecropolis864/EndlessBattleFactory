@@ -248,6 +248,10 @@ def pick(battlefield):
 		return moves[3]
 
 def AIPick(battlefield):
+	"""Returns: None
+
+	How the AI picks a move"""
+
 	maxIndex = 0
 	maxDamage = 0
 	modifier = battlefield.generateModifier()
