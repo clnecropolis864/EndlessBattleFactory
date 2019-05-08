@@ -21,21 +21,19 @@ bf = Battlefield()
 def setBf(battlefield):
 	bf = battlefield
 
+
 def alwaysHit():
 	pass
-
 def sunny():
 	battlefield.setWeather("sunny")
-
 def solarBeam():
 	pass
-
 def surf():
 	pass
 def freeze():
 	if random.random() < 0.1:
 		battlefield.currentlyOut(1).setStatus("freeze")
-		
+
 effects = {
 	"alwaysHit":alwaysHit(bf),
 	"sunny":sunny(bf),

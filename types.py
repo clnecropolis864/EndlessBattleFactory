@@ -1,3 +1,8 @@
+"""LEGACY CODE:
+Move/pokemon typing now uses type str
+Type effectiveness now calculated in calc.py, using strings
+"""
+
 from move import moveType
 
 normal = moveType("normal", [], ["rock", "steel"], ["ghost"])

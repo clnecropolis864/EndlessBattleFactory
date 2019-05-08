@@ -11,13 +11,16 @@ class Battlefield(object):
 	oppPokemon	[Pokemon]
 	hazard 		[str]
 	weather		[str]
+	turn 		[int]
 	"""
 
-	def __init__(self, youPokemon, oppPokemon, hazard="none", weather="none"):
+	def __init__(self, youPokemon, oppPokemon, hazard = "none",
+		weather = "none", turn = 0):
 		self.__youPokemon = youPokemon
 		self.__oppPokemon = oppPokemon
 		self.__hazard = hazard
 		self.__weather = weather
+		self.__turn = turn
 
 	def currentlyOut(self, val = 0):
 		"""Returns: Pokemon currently out
@@ -31,6 +34,16 @@ class Battlefield(object):
 		return self.__oppPokemon
 
 	def generateModifier(self, move, user, target):
+		"""Returns: modifier used in battle
+
+		Used to fill variables in damage calculation
+		equation
+
+		Parameter user: The pokemon using the move
+
+		Parameter target: The target pokemon
+		"""
+
 		modifier = [1, 1, 1, 1, 1, 1, 1]
 
 		#DEFINES MODIFIER VALUES
@@ -63,7 +76,7 @@ class Battlefield(object):
 		modifier[4] = calc.typeChart(move.getType(), target.getTyping())
 
 		#burn
-		if user.getStatus() == "burn":
+		if (user.getStatus() == "burn") and (user.getMove().isPhysical()):
 			modifier[5] = 0.5
 
 		#other
@@ -80,11 +93,11 @@ class Battlefield(object):
 
 		#Gives ID of move slected (ID of array)
 		moveID = 0
-		testBoolean = False 
+		testBoolean = False
 		"""Will set to true if user.getMoves[x] never
 		equals move"""
 
-		for x in range(1, len(user.getMoves())):
+		for x in range(0, len(user.getMoves())):
 			if user.getMoves[x] == move:
 				moveID = x
 				testboolean = True
@@ -109,20 +122,21 @@ class Battlefield(object):
 				attack = user.getSpAtk()
 				defense = user.getSpDefense()
 
-
+			#Determines whether move hits
 			if move.getEffect.getKey != "alwaysHit":
 				if random.random() < move.getAccuracy(): #If move hits
 					damage = calc.damageCalc(user.getLevel(), move, attack, defense, modifier)
 				else: #If misses
 					print ("miss")
+					damage = 0
 
 			#Use/Effects
 			user.useMove(moveID)
 			target.hit(damage)
-			move.effect(self)
+			self = move.effect(self)
 
 			"""
-			LEGACY CODE:	
+			LEGACY CODE:
 			target.hit(damage)
 			target.effect(move.effect())
 			user.effect(move.effect())
@@ -144,7 +158,7 @@ class Battlefield(object):
 
 		battleOver = True
 
-		if (not allFaint(0)) and (not allFaint()):
+		if (not allFaint(1)) and (not allFaint()):
 			battleOver = False
 
 		return battleOver
@@ -182,9 +196,6 @@ class Battlefield(object):
 def run(you, opp):
 	"""Returns: None
 
-	RUNS THE BATTLE. LINK TO HTML
-	AS MUCH AS POSSIBLE.
-
 	Parameter you: you, the trainer
 	Precondition: you is of type Trainer
 
@@ -216,9 +227,9 @@ def run(you, opp):
 				battlefield.useMove(selectedMove, battlefield.currentlyOut(), battlefield.currentlyOut(1))
 
 		#Checks if battle is over
-		battleOver = battlefield.battleOver()		
+		battleOver = battlefield.battleOver()
 
-	
+
 
 def pick(battlefield):
 	"""Returns: None

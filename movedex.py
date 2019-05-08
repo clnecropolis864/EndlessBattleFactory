@@ -17,6 +17,9 @@ def solarBeam():
 	solarBeam = AtkMove(15, grass, 4, "Solar Beam", 120, False, "solarBeam")
 	return solarBeam
 
+def solarBeamAtk():
+	solarBeamatk = AtkMove(15, grass, 4, "Solar Beam", 120, )
+
 def surf():
 	surf = AtkMove(15, water, 5, "Surf", 90, False, "surf")
 	return surf
