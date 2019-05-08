@@ -6,39 +6,38 @@ class Move(object):
 	INSTANCE ATTRIBUTES:
 	pp: pp of move 					[int]
 	type: type of move 				[list]
-	name: name of move 				[str]
 	notes: usage of move 			[str]
+	name: name of move 				[str]
 	"""
 
-	def __init__(self, pp, Type, name, effect = "none", notes = ""):
+	def __init__(self, pp, Type, name, notes = "", effect = "none"):
 		"""Initializer: Creates a Move
 
         Parameter pp: The pp of a move
         Precondition: pp is of type int and is > 0
 
         Parameter type: The type of the move
-        Precondition: type is of type list populated with str
-        Precondition: len(type) is between 1 and 2
+        Precondition: type is of type str
 
         Parameter name: The move name
         Precondition: name is of type str
-
-        Parameter effect: The side effects of the move
-        Precondition: effect is of object str
-        Precindition: effect has the same value as a key in effectdex, to which
-        	there is a corresponding effect
 
         Parameter notes: The details of a move's usage. i.e,
         	swords dance is for support, flamethrower is to
         	attack, etc. Used for random team generation purposes.
         Precondition: notes is of type str
+
+        Parameter effect: The side effects of the move
+        Precondition: effect is of object str
+        Precindition: effect has the same value as a key in effectdex, to which
+        	there is a corresponding effect
         """
 
 		self._pp = pp
 		self._Type = Type
 		self._name = name
-		self._effect = effect
 		self._notes = notes
+		self._effect = effect
 
 	def __str__(self):
 		"""Returns: Name of move"""
@@ -68,38 +67,34 @@ class Move(object):
 class AtkMove(Move):
 	"""Instance is a Move that attacks
 
+	So if SpMove is now useless, why don't I just call this a Move?
+
 	ADDITIONAL INSTANCE ATTRIBUTES:
-	cth: chance to hit					[float]
 	power: base power of move 			[int]
+	cth: chance to hit					[float]
 	physical: if the move is physical 	[bool]
 	contact: if move makes contact 		[bool]
-	effect: any secondary effects		[str]
 	"""
 
-	def __init__(self, pp, Type, id, name, effect = "none", notes = "", power = 0, cth = 1, physical = True, contact = False):
+	def __init__(self, pp, Type, name, notes = "", effect = "none", power = 0, cth = 1, physical = True, contact = True):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
 		Move. Only the additional instance attributes
 		are listed below.
 
+		Parameter power: The base power of a move
+		Precondition: power is of type int
+
 		Parameter cth: The chance to hit (default = 1)
 		Precondition: cth is of type float
 		Precondition: (cth > 0) & (cth <= 1)
-
-        Parameter power: The base power of a move
-        Precondition: power is of type int
 
         Parameter physical: if the move is physical
         Precondition: physical is type bool
 
         Parameter contact: if the move makes contact
         Precondition: contact is of type bool
-
-        Parameter effect: The side effect of the move
-        Parameter effect: str will be passed into effectdex dict,
-        Which calls a function.
-        Precondition: effect is of type str
         """
 
 		Move.__init__(self, pp, Type, id, name, effect, notes)
@@ -132,13 +127,16 @@ class AtkMove(Move):
 class SpMove(Move):
 	"""Instance is a Move that doesn't attack
 
+	Why don't I just use an attackMove with power 0?
+	Will remove this type as soon as I determine that it's useless
+
 	ADDITIONAL INSTANCE ATTRIBUTES:
 	cth: chance to hit				[float]
 	effect: any secondary effects	[str]
 	"""
 
 
-	def __init__(self, pp, Type, id, name, effect = "none", notes = "", cth = 1):
+	def __init__(self, pp, Type, name, effect = "none", notes = "", cth = 1):
 		"""Initializer: Creates an attacking move
 
 		All instance attributes are inherited from
