@@ -1,33 +1,32 @@
 class Pokemon(object):
 	"""Instance is a pokemon
-	    
+
 	INSTANCE ATTRIBUTES:
-	__hp				[int]
-	__attack			[int]
-	__defense			[int]
-	__special attack	[int]
-	__special defense	[int]
-	__speed				[int]
+	name 				[str]
+	hp					[int]
+	attack				[int]
+	defense				[int]
+	special attack		[int]
+	special defense		[int]
+	speed				[int]
+	moves 				[list]
+	ability				[str]
+	type				[list]
+	item				[str]
+	level				[int]
+	notes				[list]
 
-	__moves 			[list]
-	__ability			[str]
-	__type				[list]
-
-	__item				[str]
-	__level				[int]
-	__notes				[list]
-
-	__isFaint			[bool]
-	__status			[str]
-
+	isFaint				[bool]
+	status				[str]
 	"""
 
-	def __init__(self, stats, moves, ability, typing, notes = [], item = None, level = 100):
+	def __init__(self, name, stats, moves, ability, typing, notes = [], item = None, level = 100):
 		"""Initializer: Creates a pokemon
-        
+
         Parameter stats: A pokemon's current stats
+        	[hp, attack, defense, special attack, special defense, speed]
         Precondition: stats is of type list with len() = 6
-        
+
         Parameter moves: A pokemon's current 4 moves
         Precondition: moves is of type list with len() <= 4
 
@@ -48,6 +47,8 @@ class Pokemon(object):
         Precondition: level is of type int
         """
 
+        self.__name = name
+
         #Stats
 		self.__hp = stats[0]
 		self.__atk = stats[1]
@@ -57,7 +58,7 @@ class Pokemon(object):
 		self.__spe = stats[5]
 
 		self.__moves = moves
-		self.__ability = ability 
+		self.__ability = ability
 		self.__typing = typing
 
 		#With default values
@@ -135,6 +136,11 @@ class Pokemon(object):
 	def isFaint(self):
 		return self.__isFaint
 
+	def __str__(self):
+		if(isFaint):
+			return self.__name + "(FNT)"
+		return self.__name + self.__status
+
 """Legend:
 [Physical attack, Special attack, Physical Defense, Special Defense, Support]
 """
@@ -144,6 +150,6 @@ build = {
 "SwordsDance": [4, 0, 0, 0, 4]
 }
 
-	
-	
-	
+
+
+

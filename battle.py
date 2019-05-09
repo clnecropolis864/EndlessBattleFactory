@@ -7,18 +7,24 @@ class Battlefield(object):
 	"""Instance is a battlefield
 
 	INSTANCE ATTRIBUTES:
+	you 		[Trainer]
+	opp 		[Trainer]
 	youPokemon 	[Pokemon]
 	oppPokemon	[Pokemon]
-	hazard 		[str]
+	youHazard 	[str]
+	oppHazard	[str]
 	weather		[str]
 	turn 		[int]
 	"""
 
-	def __init__(self, youPokemon, oppPokemon, hazard = "none",
-		weather = "none", turn = 0):
-		self.__youPokemon = youPokemon
-		self.__oppPokemon = oppPokemon
-		self.__hazard = hazard
+	def __init__(self, you, opp):
+		self.__you = you
+		self.__opp = opp
+
+		self.__youPokemon = you.getParty(0)
+		self.__oppPokemon = you.getParty(0)
+		self.__youHazard = "none"
+		self.__oppHazard = "none"
 		self.__weather = weather
 		self.__turn = turn
 
@@ -182,6 +188,68 @@ class Battlefield(object):
 				allFaint = False
 		return allFaint
 
+	def allFaint(self, val = 0):
+		"""Returns: Whether the battle is over
+
+		Parameter val: The value. 0 for you, 1 for opponent
+		Precondition: val is 0 or 1 and of type int
+		"""
+		allFaint = True
+
+		if val == 0:
+			for x in youPokemon:
+				if not x.isFaint():
+					allFaint = False
+			return allFaint
+
+		for x in oppPokemon:
+			if not x.isFaint():
+				allFaint = False
+		return allFaint
+
+	def __str__():
+
+		"""
+		------------------TURN: 1------------------
+		You: Charizard          Opp: Blastoise(BRN)
+		HP: 140                              HP: 20
+		               WEATHER: clear
+		(Blastoise)                      (Venusaur)
+		(Venusaur)                      (Charizard)
+		Hazards: none                 Hazards: none
+
+		[Surf]               [Ice Beam]
+		[Rapid Spin]         [Rest]
+
+		-------------------------------------------
+		"""
+
+		line1 = "-" * 18 + "TURN: " + self.__turn + "-" * 18 + "\n"
+		line2 = "You: " + self.__youPokemon
+		line2 += ("Opp: " + self.__oppPokemon).rjust(43 - len(line2)) + "\n"
+		line3 = "HP: " + self.__youPokemon.getHP()
+		line3 += ("HP: " + self.__oppPokemon.getHP()).rjust(43 - len(line3)) + "\n"
+		line4 = ("WEATHER: " + self.__weather).center(43) + "\n"
+		line5 = "(" + self.__you.getParty(1) + ")"
+		line5 += ("(" + self.__opp.getParty(1)+ ")").rjust(43 - len(line5)) + "\n"
+		line6 = "(" + self.__you.getParty(2) + ")"
+		line6 += ("(" + self.__opp.getParty(2)+ ")").rjust(43 - len(line6)) + "\n"
+		line7 = "Hazards: " + self.__youHazard
+		line7 += ("Hazards " + self.__oppHazard).rjust(43 - len(line7)) + "\n"
+		line8 = "\n"
+		line9_10 = ""
+		for i in range(0, len(self.__youPokemon.getMoves())):
+			if (i % 2) == 1:
+				line9_10 += ("[" + self.__youPokemon.getMove(i) + "]").rjust(\
+					21 - len("[" + self.__youPokemon.getMove(i - 1) + "]")) + "\n"
+
+			line9_10 += "[" + self.__youPokemon.getMove(i - 1) + "]"
+		line11 = "-" * 43
+
+		out = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8\
+			+ line9_10 + line11
+
+
 
 	"""------------------
 	GETTER/SETTER METHODS
@@ -205,7 +273,7 @@ def run(you, opp):
 	battleOver = False
 	while not battleOver:
 
-		battlefield = Battlefield(you.getParty(0), opp.getParty(0)) #Defines battlefield
+		battlefield = Battlefield(you, opp) #Defines battlefield
 
 		selectedMove = pick(battlefield) #Move select
 		oppSelectedMove = AIPick(battlefield) #AI picks a move
