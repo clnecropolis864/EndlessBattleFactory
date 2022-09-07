@@ -23,33 +23,33 @@ class Pokemon(object):
 	def __init__(self, name, stats, moves, ability, typing, notes = [], item = None, level = 100):
 		"""Initializer: Creates a pokemon
 
-        Parameter stats: A pokemon's current stats
-        	[hp, attack, defense, special attack, special defense, speed]
-        Precondition: stats is of type list with len() = 6
+		Parameter stats: A pokemon's current stats
+			[hp, attack, defense, special attack, special defense, speed]
+		Precondition: stats is of type list with len() = 6
 
-        Parameter moves: A pokemon's current 4 moves
-        Precondition: moves is of type list with len() <= 4
+		Parameter moves: A pokemon's current 4 moves
+		Precondition: moves is of type list with len() <= 4
 
-        Parameter ability: A pokemon's ability
-        Precondition: ability is of type str
+		Parameter ability: A pokemon's ability
+		Precondition: ability is of type str
 
-        Parameter typing: A pokemon's typing
-        Precondition: typing is of type list of length between 1 and 2
-        Precondition: list items are of type str
+		Parameter typing: A pokemon's typing
+		Precondition: typing is of type list of length between 1 and 2
+		Precondition: list items are of type str
 
-        Parameter notes: The details on a pokemon's use
-        Precondition: notes is of type list with length 5 (for now)
+		Parameter notes: The details on a pokemon's use
+		Precondition: notes is of type list with length 5 (for now)
 
-        Parameter item: A pokemon's current held item
-        Precondition: item is of type string
+		Parameter item: A pokemon's current held item
+		Precondition: item is of type string
 
-        Parameter level: A pokemon's level
-        Precondition: level is of type int
-        """
+		Parameter level: A pokemon's level
+		Precondition: level is of type int
+		"""
 
-        self.__name = name
+		self.__name = name
 
-        #Stats
+		#Stats
 		self.__hp = stats[0]
 		self.__atk = stats[1]
 		self.__defense = stats[2]

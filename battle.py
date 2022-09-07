@@ -1,6 +1,6 @@
 import random
 import calc
-import pygame as pg
+#import pygame as pg
 import effectdex
 
 class Battlefield(object):

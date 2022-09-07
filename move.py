@@ -97,7 +97,7 @@ class AtkMove(Move):
         Precondition: contact is of type bool
         """
 
-		Move.__init__(self, pp, Type, id, name, effect, notes)
+		Move.__init__(pp, Type, name, notes, effect)
 		self.__power = power
 		self.__cth = cth
 		self.__physical = physical
